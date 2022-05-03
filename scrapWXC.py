@@ -13,12 +13,12 @@ import textSeg
 def addToDf(comment):
     # print(comment.getCTxt)
     # print(comment.getTime)
-    settings.commentsPd.loc[len(settings.commentsPd.index)] = [comment.getCId, comment.getCPid, comment.getCTxt, comment.getUName, comment.getCTime, comment.getCStxt]
+    settings.commentsDf.loc[len(settings.commentsDf.index)] = [comment.getCId, comment.getCPid, comment.getCTxt, comment.getUName, comment.getCTime, comment.getCStxt]
 
 def getParentId(commentId):
     parentId = 0
     global cDriver
-    cDriver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))
+    cDriver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), chrome_options=option)
     cDriver.refresh()
 
     cDriver.get("https://bbs.wenxuecity.com/currentevent/" + str(commentId) + ".html")
@@ -62,6 +62,7 @@ def getPageContent(pageNum):
 
 def init():
     service = Service(executable_path=ChromeDriverManager().install())
+    global option
     option = webdriver.ChromeOptions()
     chrome_prefs = {}
     option.experimental_options["prefs"] = chrome_prefs

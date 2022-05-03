@@ -43,8 +43,8 @@ class Comment:
 
 def init():
 
-    global commentsPd
-    commentsPd = pd.DataFrame([], columns=list(["commentId", "parentId", "commentTxt", "userName", "commentTime", "segmentedTxt"]))
+    global commentsDf
+    commentsDf = pd.DataFrame([], columns=list(["commentId", "parentId", "commentTxt", "userName", "commentTime", "segmentedTxt"]))
 
     global service
     service = Service(executable_path=ChromeDriverManager().install())

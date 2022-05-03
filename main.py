@@ -9,16 +9,17 @@ from IPython.display import display
 
 import settings
 import scrapWXC
+import scrapHR
 
 if __name__ == '__main__':
 
     settings.init()
-    scrapWXC.init()
+    scrapHR.init()
 
     #print(settings.commentsPd.dtypes)
     #display(settings.commentsPd)
 
-    settings.commentsPd.to_csv('out.csv', index=False)
+    settings.commentsDf.to_csv('out.csv', index=False)
 
 
 
