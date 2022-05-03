@@ -8,15 +8,21 @@ from IPython.display import display
 
 
 class Comment:
-    def __init__(self, cId, cTxt, uName, cTime):
+    def __init__(self, cId, cPid, cTxt, uName, cTime, cStxt):
         self.cId = cId
+        self.cPid = cPid
         self.cTxt = cTxt
         self.uName = uName
         self.cTime = cTime
+        self.cStxt = cStxt
 
     @property
     def getCId(self):
         return self.cId
+
+    @property
+    def getCPid(self):
+        return self.cPid
 
     @property
     def getCTxt(self):
@@ -30,11 +36,15 @@ class Comment:
     def getCTime(self):
         return self.cTime
 
+    @property
+    def getCStxt(self):
+        return self.cStxt
+
 
 def init():
 
     global commentsPd
-    commentsPd = pd.DataFrame([], columns=list(["commentId", "commentTxt", "userName", "commentTime"]))
+    commentsPd = pd.DataFrame([], columns=list(["commentId", "parentId", "commentTxt", "userName", "commentTime", "segmentedTxt"]))
 
     global service
     service = Service(executable_path=ChromeDriverManager().install())

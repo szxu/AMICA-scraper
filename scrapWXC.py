@@ -13,7 +13,26 @@ import textSeg
 def addToDf(comment):
     # print(comment.getCTxt)
     # print(comment.getTime)
-    settings.commentsPd.loc[len(settings.commentsPd.index)] = [comment.getCId, comment.getCTxt, comment.getUName, comment.getCTime]
+    settings.commentsPd.loc[len(settings.commentsPd.index)] = [comment.getCId, comment.getCPid, comment.getCTxt, comment.getUName, comment.getCTime, comment.getCStxt]
+
+def getParentId(commentId):
+    parentId = 0
+    global cDriver
+    cDriver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))
+    cDriver.refresh()
+
+    cDriver.get("https://bbs.wenxuecity.com/currentevent/" + str(commentId) + ".html")
+    cDriver.implicitly_wait(0.5)
+    postParent = cDriver.find_elements(By.ID, "postparent")
+    print(postParent)
+    if len(postParent) == 1:
+        parentLinks = postParent[0].find_elements(By.TAG_NAME, 'a')
+        parentUrl = parentLinks[0].get_attribute('href')
+        parentId = int(parentUrl.replace("https://bbs.wenxuecity.com/currentevent/", "").replace(".html", ""))
+
+    print("parentId:" + str(parentId))
+    cDriver.close()
+    return parentId
 
 def getPageContent(pageNum):
     driver.get("https://bbs.wenxuecity.com/currentevent/?page=" + str(pageNum))
@@ -32,22 +51,26 @@ def getPageContent(pageNum):
             commentAtrTxtList2 = commentAtrTxtList[-1].split("(")
             commentTime = str(commentAtrTxtList2[0])
             print(commentTime)
-            commentTextWords = textSeg.seg(commentText)
-            curComment = settings.Comment(commentId, commentTextWords, userName, commentTime)
+            commentSegText = textSeg.seg(commentText)
+            commentParentId = getParentId(commentId)
+            curComment = settings.Comment(commentId, commentParentId, commentText, userName, commentTime, commentSegText)
             addToDf(curComment)
 
             # print(curComment.getCTxt)
             # print(curComment.getTime)
             #break
 
-
-
-
 def init():
     service = Service(executable_path=ChromeDriverManager().install())
+    option = webdriver.ChromeOptions()
+    chrome_prefs = {}
+    option.experimental_options["prefs"] = chrome_prefs
+    chrome_prefs["profile.default_content_settings"] = {"images": 2}
+    chrome_prefs["profile.managed_default_content_settings"] = {"images": 2}
+
     global driver
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), chrome_options=option)
     driver.refresh()
-    for i in range(1, 500):
+    for i in range(1, 2):
         getPageContent(i)
     driver.quit()
