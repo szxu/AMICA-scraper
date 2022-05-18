@@ -10,11 +10,6 @@ from IPython.display import display
 import settings
 import textSeg
 
-def addToDf(comment):
-    # print(comment.getCTxt)
-    # print(comment.getTime)
-    settings.commentsDf.loc[len(settings.commentsDf.index)] = [comment.getCId, comment.getCPid, comment.getCTxt, comment.getUName, comment.getCTime, comment.getCStxt]
-
 def getParentId(commentId):
     parentId = 0
     global cDriver
@@ -54,7 +49,7 @@ def getPageContent(pageNum):
             commentSegText = textSeg.seg(commentText)
             commentParentId = getParentId(commentId)
             curComment = settings.Comment(commentId, commentParentId, commentText, userName, commentTime, commentSegText)
-            addToDf(curComment)
+            settings.addToDf(curComment)
 
             # print(curComment.getCTxt)
             # print(curComment.getTime)

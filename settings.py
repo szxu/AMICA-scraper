@@ -40,14 +40,14 @@ class Comment:
     def getCStxt(self):
         return self.cStxt
 
+    def addToDf(self):
+        # print(comment.getCTxt)
+        # print(comment.getTime)
+        commentsDf.loc[len(commentsDf.index)] = [self.getCId, self.getCPid, self.getCTxt, self.getUName, self.getCTime, self.getCStxt]
+
 
 def init():
 
     global commentsDf
     commentsDf = pd.DataFrame([], columns=list(["commentId", "parentId", "commentTxt", "userName", "commentTime", "segmentedTxt"]))
 
-    global service
-    service = Service(executable_path=ChromeDriverManager().install())
-
-    global driver
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))

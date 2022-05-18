@@ -10,11 +10,12 @@ from IPython.display import display
 import settings
 import scrapWXC
 import scrapHR
+import scrapMIT
 
 if __name__ == '__main__':
 
     settings.init()
-    scrapHR.init()
+    scrapMIT.init()
 
     #print(settings.commentsPd.dtypes)
     #display(settings.commentsPd)
