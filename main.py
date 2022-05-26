@@ -8,19 +8,21 @@ import pandas as pd
 from IPython.display import display
 
 import settings
-import scrapWXC
-import scrapHR
-import scrapMIT
+from scrapFactory import ScrapFactory
+from updateParent import UpdateParent
 
 if __name__ == '__main__':
-
     settings.init()
-    scrapMIT.init()
+    #webName = input("Please enter web name from (WXC, HR or MIT): ").upper()
+    webName = "MIT"
+    settings.__CDF__ = pd.read_csv(webName + '.csv')
+    ScrapFactory.createScrap(webName)
+    UpdateParent.init("")
 
-    #print(settings.commentsPd.dtypes)
-    #display(settings.commentsPd)
+    #print(Settings.commentsDf.dtypes)
+    #display(Settings.commentsDf)
 
-    settings.commentsDf.to_csv('out.csv', index=False)
+    settings.__CDF__.to_csv(webName + '.csv', index=False)
 
 
 
