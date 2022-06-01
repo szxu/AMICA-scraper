@@ -1,0 +1,13 @@
+[78521:78521:0601/055340.802848:WARNING:account_consistency_mode_manager.cc(70)] Desktop Identity Consistency cannot be enabled as no OAuth client ID and client secret have been configured.
+[78627:78627:0601/055340.809750:WARNING:sandbox_linux.cc(376)] InitializeSandbox() called with multiple threads in process gpu-process.
+[78521:78521:0601/055341.641034:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+[78521:78521:0601/055342.373458:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://bbs.wenxuecity.com/currentEvent/?page=1 (0)
+[78521:78521:0601/060020.125068:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://bbs.wenxuecity.com/currentEvent/?page=2 (0)
+[78521:78521:0601/060606.420344:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://bbs.wenxuecity.com/currentEvent/?page=3 (0)
+[78521:78521:0601/061128.868304:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://bbs.wenxuecity.com/currentEvent/?page=4 (0)
+[78521:78521:0601/061629.475587:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://bbs.wenxuecity.com/currentEvent/?page=5 (0)
+[78521:78521:0601/062152.754533:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://bbs.wenxuecity.com/currentEvent/?page=6 (0)
+[78521:78521:0601/062700.601648:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://bbs.wenxuecity.com/currentEvent/?page=7 (0)
+[78521:78521:0601/063209.123347:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://bbs.wenxuecity.com/currentEvent/?page=8 (0)
+[78521:78521:0601/063727.678511:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://bbs.wenxuecity.com/currentEvent/?page=9 (0)
+[78521:78521:0601/064318.873471:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
