@@ -1,0 +1,6 @@
+[233808:233808:0601/155809.800291:WARNING:account_consistency_mode_manager.cc(70)] Desktop Identity Consistency cannot be enabled as no OAuth client ID and client secret have been configured.
+[233913:233913:0601/155809.807912:WARNING:sandbox_linux.cc(376)] InitializeSandbox() called with multiple threads in process gpu-process.
+[233808:233808:0601/155810.672242:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+[233808:233808:0601/155811.134233:INFO:CONSOLE(131)] "Uncaught ReferenceError: $ is not defined", source: https://www.wenxuecity.com/search/js/searchlist.js (131)
+[233808:233808:0601/155811.184303:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://www.wenxuecity.com/news/morenews/?page=1 (0)
+[233808:233808:0601/160637.661786:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
