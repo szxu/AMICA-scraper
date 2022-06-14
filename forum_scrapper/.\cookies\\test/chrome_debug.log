@@ -1,0 +1,8 @@
+[337539:337539:0613/232552.880886:WARNING:account_consistency_mode_manager.cc(70)] Desktop Identity Consistency cannot be enabled as no OAuth client ID and client secret have been configured.
+[337649:337649:0613/232552.892476:WARNING:sandbox_linux.cc(376)] InitializeSandbox() called with multiple threads in process gpu-process.
+[337539:337539:0613/232553.500114:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+[337539:337539:0613/232554.115425:INFO:CONSOLE(131)] "Uncaught ReferenceError: $ is not defined", source: https://www.wenxuecity.com/search/js/searchlist.js (131)
+[337539:337539:0613/232554.168853:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://www.wenxuecity.com/news/morenews/?page=1 (0)
+[337652:337682:0613/232559.926482:WARNING:sqlite_persistent_store_backend_base.cc(165)] Failed to post task from FlushAndNotifyInBackground@net/extras/sqlite/sqlite_persistent_store_backend_base.cc:213 to client_task_runner_.
+[337652:337682:0613/232559.926548:WARNING:sqlite_persistent_store_backend_base.cc(165)] Failed to post task from FlushAndNotifyInBackground@net/extras/sqlite/sqlite_persistent_store_backend_base.cc:213 to client_task_runner_.
+[337539:337539:0613/232559.935372:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
