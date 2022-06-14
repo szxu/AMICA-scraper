@@ -4,7 +4,7 @@ from scrapper.forum_scraper.hr_scrapper import HrScrapper
 from scrapper.news_scraper.wxc_news_scraper import WxcNewsScrapper
 
 class ScraperFactory():
-    def create_forum_scraper(wenName, catName, df):
+    def create_forum_scraper(wenName, catName, id_list):
         if wenName == 'WXC':
             scraper = WxcScrapper()
         elif wenName == 'MIT':
@@ -14,8 +14,8 @@ class ScraperFactory():
 
         scraper.init(catName, df)
 
-    def create_news_scraper(wenName, catName, df):
+    def create_news_scraper(wenName, catName, id_list):
         if wenName == 'WXC':
             scraper = WxcNewsScrapper()
 
-        scraper.init(catName, df)
+        return scraper.init(catName, id_list)

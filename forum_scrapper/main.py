@@ -2,10 +2,9 @@
 
 import pandas as pd
 
-from utils.parent_updater import ParentUpdater
+from utils.df_handler import ParentUpdater
 from utils.settings import GlobalVariables
-from utils.dataframe_maker import DataFrameMaker
-from scrapper.factories.scraperfactory import ScraperFactory
+from scrapper.factories.scraper_factory import ScraperFactory
 
 class Main():
     """

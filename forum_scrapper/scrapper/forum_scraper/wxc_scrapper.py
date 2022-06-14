@@ -61,10 +61,6 @@ class WxcScrapper():
                              parentTitle, parentText, parentUserId, time, segmentedText)
                 curComment.addToDf()
 
-                # print(curComment.getCTxt)
-                # print(curComment.getTime)
-
-
     def init(self, catName):
         os = ChromeOptionSetter()
         global chromeOptions

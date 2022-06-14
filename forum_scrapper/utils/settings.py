@@ -12,7 +12,7 @@ class GlobalVariables():
 
     @staticmethod
     def init():
-        __CDF__ = pd.DataFrame([], columns=list(["Comment ID",
+        __CDF__ = pd.DataFrame([], columns=list(["ID",
                                                  "Website",
                                                  "Category",
                                                  "Is Article",
@@ -26,7 +26,7 @@ class GlobalVariables():
                                                  "Comment Time",
                                                  "Segmented Text"]))
 
-        __NDF__ = pd.DataFrame([], columns=list(["News ID",
+        __NDF__ = pd.DataFrame([], columns=list(["ID",
                                                  "Website",
                                                  "Category",
                                                  "News Title",
