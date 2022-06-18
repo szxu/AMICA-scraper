@@ -22,21 +22,13 @@ class DfHandler():
 
     @staticmethod
     def make_news_df():
-        # df = pd.DataFrame([], columns=list(["ID",
-        #                                     "Website",
-        #                                     "Category",
-        #                                     "News Title",
-        #                                     "News Text",
-        #                                     "Source",
-        #                                     "Comment Time",
-        #                                     "Segmented Text"]))
-
         df = pd.DataFrame({"ID":[],"Website":[],
                                             "Category":[],
                                             "News Title":[],
                                             "News Text":[],
                                             "Source":[],
                                             "Time":[],
+                                            "Read Count": [],
                                             "Segmented Text":[]})
         return df
 
@@ -64,7 +56,8 @@ class DfHandler():
         print(df1)
         print("=" * 20)
         print(df2)
-        return pd.concat([df1, df2], join="inner")
+        frames = [df1, df2]
+        return pd.concat(frames)
 
 
 

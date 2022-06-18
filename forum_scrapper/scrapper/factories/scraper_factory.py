@@ -4,18 +4,18 @@ from scrapper.forum_scraper.hr_scrapper import HrScrapper
 from scrapper.news_scraper.wxc_news_scraper import WxcNewsScrapper
 
 class ScraperFactory():
-    def create_forum_scraper(wenName, catName, id_list):
-        if wenName == 'WXC':
+    def create_forum_scraper(web_name, catName, id_list):
+        if web_name == 'WXC':
             scraper = WxcScrapper()
-        elif wenName == 'MIT':
+        elif web_name == 'MIT':
             scraper = MitScrapper()
-        elif wenName == 'HR':
+        elif web_name == 'HR':
             scraper = HrScrapper()
 
         scraper.init(catName, df)
 
-    def create_news_scraper(wenName, catName, id_list):
-        if wenName == 'WXC':
+    def create_news_scraper(target):
+        if target["web_name"] == 'WXC':
             scraper = WxcNewsScrapper()
 
-        return scraper.init(catName, id_list)
+        return scraper.init(target)

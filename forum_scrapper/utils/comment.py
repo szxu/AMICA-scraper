@@ -17,11 +17,11 @@ class Comment:
         self.time = _time
         self.stxt = _stxt
 
-    def addToDf(self, df : pd.DataFrame):
-        # print(comment.getCTxt)
-        # print(comment.getTime)
-
-        GlobalVariables.df.loc[len(GlobalVariables.df.index)] = [self.id, self.web, self.cat, self.isArti, self.title, self.txt, self.uid
+    def add_row(self, running_df):
+        running_df.loc[len(running_df.index)] = [self.id, self.web, self.cat, self.isArti, self.title, self.txt, self.uid
             , self.pid, self.ptitle, self.ptxt, self.puid, self.time, self.stxt]
+        return running_df
 
-
+    def print_comment(self):
+        print([self.id, self.web, self.cat, self.isArti, self.title, self.txt, self.uid
+            , self.pid, self.ptitle, self.ptxt, self.puid, self.time, self.stxt])
