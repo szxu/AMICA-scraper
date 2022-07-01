@@ -7,7 +7,7 @@ import chromedriver_autoinstaller as chromedriver
 from util.df_handler import DfHandler
 from scraper.factories.scraper_factory import ScraperFactory
 
-from datetime import date
+from datetime import date, datetime
 
 class App():
     @staticmethod
@@ -52,7 +52,7 @@ class App():
         df = ScraperFactory.create_user_scraper(target)
         df = DfHandler.update(df)
 
-        filename = target["web_name"] + "_" + target["user_id"] + "_" + str(date.today())
+        filename = target["web_name"] + "_" + target["user_id"] + "_" + str(datetime.today())
         forum_path = BASE_PATH + '/files/user/' + target["web_name"] + '/'
 
         if target["file_type"] == "csv":
@@ -97,19 +97,19 @@ class App():
     def fake_user_input(self):
         target = {}
         global BASE_PATH
-        BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+        BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/../'
 
-        target["source_type_input"] = "user".lower()
+        target["source_type_input"] = "forum".lower()
         target["web_name"] = "MIT"
         target["file_type"] = "csv"
 
         if target["source_type_input"] == "user":
-            target["user_id"] = "hhcare"
+            target["user_id"] = "beijingren3"
             self.scrap_user(target)
         else:
             target["cat_name"] = "Military"
-            target["start_date"] = date(2022, 6, 26)
-            target["end_date"] = date(2022, 6, 26)
+            target["start_date"] = date(2022, 6, 24)
+            target["end_date"] = date(2022, 6, 24)
             print("This program scraps from " + str(target["start_date"]) + ' to ' + str(target["end_date"]))
             if target["source_type_input"] == "news":
                 self.scrap_news(target)

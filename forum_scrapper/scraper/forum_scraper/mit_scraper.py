@@ -1,5 +1,6 @@
 # selenium 4
 from selenium import webdriver
+from selenium.webdriver import chrome
 from selenium.webdriver.common.by import By
 
 from datetime import date
@@ -17,7 +18,7 @@ class MitScraper():
         #print(commentNum)
 
         driver.get("https://www.mitbbs.com/article/" + str(target["cat_name"]) + "/" + str(comment_num) + "_3.html")
-        driver.implicitly_wait(0.01)
+        driver.implicitly_wait(0.5)
 
         id = comment_num
         news_bg_td = driver.find_element(By.XPATH, "//td[@class='news-bg']")
@@ -71,19 +72,29 @@ class MitScraper():
 
         df = DfHandler.make_comment_df()
 
-        for i in range(64920147, 1, -2):
+        for i in range(64891095, 1, -2):
+            chrome_options = os.set_options()
+            driver = webdriver.Chrome(options=chrome_options)
+            driver.set_page_load_timeout(10)
+            driver.refresh()
             try:
-                chrome_options = os.set_options()
-                driver = webdriver.Chrome(chrome_options=chrome_options)
-                driver.set_page_load_timeout(10)
-                driver.refresh()
                 df, isend = self.get_comment_content(driver, df, i, target)
-                driver.quit()
                 print("Finish Scraping Page " + str(i))
                 if isend == True:
                     break
             except Exception as ex:
                 print(ex)
+            driver.quit()
 
         return df
 
+# if __name__ == '__main__':
+#     target = {}
+#     target["user_id"] = 'hhcare'
+#     target["cat_name"] = "Military"
+#     target["start_date"] = date(2022, 6, 25)
+#     target["end_date"] = date(2022, 6, 25)
+#
+#     mus = MitScraper()
+#     df = mus.init(target)
+#     df.to_csv("/home/ktonxu/project/AMICA/AMICA-scraper/files/test/out.csv", index=False)

@@ -121,11 +121,11 @@ class MitUserScraper():
 
         return df
 
-# if __name__ == '__main__':
-#     target = {}
-#     target["user_id"] = 'hhcare'
-#
-#     mus = MitUserScraper()
-#     df = mus.init(target)
-#     df.to_csv("/home/ktonxu/project/coen493/Misinfo Analysis/forum_scrapper/files/user/out.csv", index=False)
-#
+if __name__ == '__main__':
+    target = {}
+    target["user_id"] = 'hhcare'
+
+    mus = MitUserScraper()
+    df = mus.init(target)
+    df.to_csv("/home/ktonxu/project/AMICA/AMICA-scraper/files/test/out.csv", index=False)
+
