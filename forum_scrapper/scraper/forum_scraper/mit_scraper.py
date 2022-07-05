@@ -13,6 +13,19 @@ from scraper.util.text_segmenter import TextSegmenter
 from scraper.util.time_retriever import Date_retriever
 
 class MitScraper():
+    def get_read_count(self, id, target):
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.set_page_load_timeout(10)
+        driver.get("https://www.mitbbs.com/article_t/"+ target["cat_name"] +"/"+ str(id) +".html")
+        driver.implicitly_wait(0.5)
+        news_bg = driver.find_elements(By.CLASS_NAME, "news-bg")[0]
+        attributes = news_bg.find_elements(By.XPATH, "table/tbody/tr[2]/td")[0]
+        attri_array = attributes.text.split(",")
+        read_count = attri_array[-2].replace("次阅读", "")
+        reply_count = attri_array[-1].replace("次回复", "")
+
+        return read_count, reply_count
+
     def get_comment_content(self, driver, df, comment_num, target):
         isend = False
         #print(commentNum)
@@ -51,9 +64,14 @@ class MitScraper():
             parent_user_id = 0
             website = "MIT"
             category = target["cat_name"]
+            read_count = 0
+            reply_count = 0
+
+            if is_article == True:
+                read_count, reply_count = self.get_read_count(id, target)
 
             cur_comment = Comment(id, website, category, is_article, title, text, user_id, parent_id,
-                                  parent_title, parent_text, parent_user_id, time, segmented_text)
+                                  parent_title, parent_text, parent_user_id, time, segmented_text, read_count, reply_count)
             cur_comment.print_comment()
             df = cur_comment.add_row(df)
 
@@ -72,7 +90,7 @@ class MitScraper():
 
         df = DfHandler.make_comment_df()
 
-        for i in range(64891095, 1, -2):
+        for i in range(34713323, 1, -2):
             chrome_options = os.set_options()
             driver = webdriver.Chrome(options=chrome_options)
             driver.set_page_load_timeout(10)

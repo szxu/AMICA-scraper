@@ -107,9 +107,9 @@ class App():
             target["user_id"] = "beijingren3"
             self.scrap_user(target)
         else:
-            target["cat_name"] = "Military"
-            target["start_date"] = date(2022, 6, 24)
-            target["end_date"] = date(2022, 6, 24)
+            target["cat_name"] = "USANews"
+            target["start_date"] = date(2022, 6, 1)
+            target["end_date"] = date(2022, 6, 30)
             print("This program scraps from " + str(target["start_date"]) + ' to ' + str(target["end_date"]))
             if target["source_type_input"] == "news":
                 self.scrap_news(target)
@@ -121,7 +121,7 @@ class App():
 
     def init(self):
         chromedriver.install()
-        #self.get_user_input()
-        self.fake_user_input()
+        self.get_user_input()
+        #self.fake_user_input()
 
 

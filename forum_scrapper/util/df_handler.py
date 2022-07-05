@@ -15,7 +15,10 @@ class DfHandler():
                            "Parent Text": [],
                            "Parent User ID": [],
                            "Time": [],
-                           "Segmented Text": []})
+                           "Segmented Text": [],
+                           "Read Count": [],
+                           "Reply Count": []
+                           })
 
         return df
 
