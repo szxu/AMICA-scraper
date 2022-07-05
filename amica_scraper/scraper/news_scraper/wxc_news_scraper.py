@@ -1,6 +1,7 @@
 # selenium 4
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from datetime import date
 
 from util.chrome_option_setter import ChromeOptionSetter
 from scraper.util.text_segmenter import TextSegmenter
@@ -67,19 +68,21 @@ class WxcNewsScraper():
             time = post.find_elements(By.TAG_NAME, 'span')[0].text
             id = post_url.split("/news/")[-1].replace(".html", "")
             year, month, day = time.split("-")
-            if int(year) == int(target["year"]) and int(month) == int(target["month"]):
+            comment_date = date(int(year), int(month), int(day))
+
+            if comment_date <= target["end_date"] and comment_date >= target["start_date"]:
                 website = "WXC"
                 category = target["cat_name"]
                 cur_news = News(id, website, category, title, "", "", time, "", "")
 
                 source, text, read_count, cdf = self.get_post_content(post_url, cdf, cur_news)
                 text = text.replace("\n", " ")
-                segmented_text = ""#TextSegmenter.seg(title + text)
+                segmented_text = TextSegmenter.seg(title + text)
 
                 cur_news = News(id, website, category, title, text, source, time, read_count, segmented_text)
                 df = cur_news.add_row(df)
 
-            if int(year) < int(target["year"]) or (int(year) == int(target["year"]) and int(month) < int(target["month"])):
+            if comment_date < target["start_date"]:
                 print("Ending because current month earlier than target month")
                 isend = True
                 break

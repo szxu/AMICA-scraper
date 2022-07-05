@@ -2,7 +2,6 @@
 from selenium import webdriver
 from selenium.webdriver import chrome
 from selenium.webdriver.common.by import By
-
 from datetime import date
 
 from util.df_handler import DfHandler
@@ -52,7 +51,7 @@ class MitScraper():
             content = driver.find_element(By.XPATH, "//td[@class='jiawenzhang-type']")
             title = content.text.split("美东)")[0].split("标  题:")[-1].split("发信站:")[0]
             text = content.text.split("美东)")[-1].split("※ 来源")[0].replace("\n", "")
-            segmented_text = ""#TextSegmenter.seg(title + text)
+            segmented_text = TextSegmenter.seg(title + text)
 
             if parent_id == id:
                 is_article = True
