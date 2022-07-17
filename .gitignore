@@ -1,7 +1,5 @@
 files
-amica_scraper/__pycache__
 amica_scraper/./cookies//test/
-amica_scraper/scraper/factories/__pycache__/
-amica_scraper/scraper/forum_scraper/__pycache__/
-amica_scraper/scraper/news_scraper/__pycache__/
-amica_scraper/scraper/util/__pycache__/
+__pycache__/
+*.pyc
+

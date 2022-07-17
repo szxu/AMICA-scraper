@@ -72,7 +72,7 @@ class App():
     def get_user_input(self):
         target = {}
         global BASE_PATH
-        BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+        BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/../'
 
         target["source_type_input"] = input("Please enter the type of source(News or Forum or User): ").lower()
         target["web_name"] = input("Please enter web name from (WXC, HR or MIT): ").upper()
@@ -106,8 +106,8 @@ class App():
             self.scrap_user(target)
         else:
             target["cat_name"] = "USANews"
-            target["start_date"] = date(2022, 6, 1)
-            target["end_date"] = date(2022, 6, 30)
+            target["start_date"] = date(2022, 7, 7)
+            target["end_date"] = date(2022, 7, 7)
             print("This program scraps from " + str(target["start_date"]) + ' to ' + str(target["end_date"]))
             if target["source_type_input"] == "news":
                 self.scrap_news(target)
