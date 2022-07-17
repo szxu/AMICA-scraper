@@ -2,7 +2,7 @@
 from selenium import webdriver
 from selenium.webdriver import chrome
 from selenium.webdriver.common.by import By
-from datetime import date
+from datetime import date, datetime
 
 from util.df_handler import DfHandler
 from util.comment import Comment
@@ -38,10 +38,13 @@ class MitScraper():
         center_td_texts = center_td.text.split(",")
         time = center_td_texts[-1]
 
-        year, month, day = Date_retriever.retrieve_date(time)
-        comment_date = date(int(year), int(month), int(day))
+        timestamp = Date_retriever.retrieve_date(time)
+        start_timestamp = datetime.combine(target["start_date"], datetime.min.time())
+        end_timestamp = datetime.combine(target["end_date"], datetime.max.time())
+        print(timestamp, start_timestamp, end_timestamp)
 
-        if comment_date <= target["end_date"] and comment_date >= target["start_date"]:
+        if timestamp <= end_timestamp and timestamp >= start_timestamp:
+            print("="*20)
             urls = center_td.find_elements(By.XPATH, "//a[@class='news' ]")
             comment_parent_url = urls[0].get_attribute('href')
             parent_id = int(
@@ -70,11 +73,11 @@ class MitScraper():
                 read_count, reply_count = self.get_read_count(id, target)
 
             cur_comment = Comment(id, website, category, is_article, title, text, user_id, parent_id,
-                                  parent_title, parent_text, parent_user_id, time, segmented_text, read_count, reply_count)
+                                  parent_title, parent_text, parent_user_id, str(timestamp), segmented_text, read_count, reply_count)
             cur_comment.print_comment()
             df = cur_comment.add_row(df)
 
-        elif comment_date < target["start_date"]:
+        elif timestamp < start_timestamp:
             print("Ending because current month earlier than target month")
             isend = True
 
@@ -91,15 +94,15 @@ class MitScraper():
 
         df = DfHandler.make_comment_df()
 
-        for i in range(65091583, 1, -2):
+        for i in range(65091579, 1, -2):
             chrome_options = os.set_options()
             driver = webdriver.Chrome(options=chrome_options)
             driver.set_page_load_timeout(10)
             driver.refresh()
             try:
                 df, isend = self.get_comment_content(driver, df, i, target)
-                print("Finish Scraping Page " + str(i))
-                if isend == True:
+                print("Finish Scraping Comment " + str(i))
+                if True:#isend == True:
                     break
             except Exception as ex:
                 print(ex)
@@ -110,10 +113,10 @@ class MitScraper():
 # if __name__ == '__main__':
 #     target = {}
 #     target["user_id"] = 'hhcare'
-#     target["cat_name"] = "Military"
-#     target["start_date"] = date(2022, 6, 25)
-#     target["end_date"] = date(2022, 6, 25)
-#
-#     mus = MitScraper()
-#     df = mus.init(target)
-#     df.to_csv("/home/ktonxu/project/AMICA/AMICA-scraper/files/test/out.csv", index=False)
+#     target["start_date"] = date(2022, 7, 14)
+#     target["end_date"] = date(2022, 7, 14)
+#     #for i in range(65091579, 1, -2):
+# 
+#     ms = MitScraper()
+#     _df = ms.init(target)
+#     _df.to_csv("/home/ktonxu/project/AMICA/AMICA-scraper/files/test/out.csv", index=False)
