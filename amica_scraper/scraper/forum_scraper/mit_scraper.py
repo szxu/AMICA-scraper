@@ -1,4 +1,6 @@
 # selenium 4
+import traceback
+
 from selenium import webdriver
 from selenium.webdriver import chrome
 from selenium.webdriver.common.by import By
@@ -38,13 +40,13 @@ class MitScraper():
         center_td_texts = center_td.text.split(",")
         time = center_td_texts[-1]
 
-        timestamp = Date_retriever.retrieve_date(time)
+        timestamp = Date_retriever.retrieve_date(time, "MIT")
         start_timestamp = datetime.combine(target["start_date"], datetime.min.time())
         end_timestamp = datetime.combine(target["end_date"], datetime.max.time())
-        print(timestamp, start_timestamp, end_timestamp)
+        #print(timestamp, start_timestamp, end_timestamp)
 
         if timestamp <= end_timestamp and timestamp >= start_timestamp:
-            print("="*20)
+            #print("="*20)
             urls = center_td.find_elements(By.XPATH, "//a[@class='news' ]")
             comment_parent_url = urls[0].get_attribute('href')
             parent_id = int(
@@ -100,12 +102,12 @@ class MitScraper():
             driver.set_page_load_timeout(10)
             driver.refresh()
             try:
-                df, isend = self.get_comment_content(driver, df, i, target)
+                df, is_end = self.get_comment_content(driver, df, i, target)
                 print("Finish Scraping Comment " + str(i))
-                if True:#isend == True:
+                if is_end == True:
                     break
             except Exception as ex:
-                print(ex)
+                print(traceback.format_exc())
             driver.quit()
 
         return df
@@ -116,7 +118,7 @@ class MitScraper():
 #     target["start_date"] = date(2022, 7, 14)
 #     target["end_date"] = date(2022, 7, 14)
 #     #for i in range(65091579, 1, -2):
-# 
+#
 #     ms = MitScraper()
 #     _df = ms.init(target)
 #     _df.to_csv("/home/ktonxu/project/AMICA/AMICA-scraper/files/test/out.csv", index=False)

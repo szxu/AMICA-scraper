@@ -26,7 +26,21 @@ class ChromeOptionSetter():
 
         ua = UserAgent()
         user_agent = ua.random
-        print(user_agent)
+        #print(user_agent)
         chrome_options.add_argument(f'user-agent={user_agent}')
 
+        return chrome_options
+
+    @staticmethod
+    def set_options2():
+        chrome_options = Options()
+        chrome_prefs = {}
+        chrome_prefs["profile.default_content_settings"] = {"images": 2}
+        chrome_prefs["profile.managed_default_content_settings"] = {"images": 2}
+        chrome_options.experimental_options["prefs"] = chrome_prefs
+
+        ua = UserAgent()
+        user_agent = ua.random
+        print(user_agent)
+        chrome_options.add_argument(f'user-agent={user_agent}')
         return chrome_options
